@@ -1,22 +1,34 @@
-class Stone {
-    constructor(x,y,width,height) {
-      var options = {
-          isStatic: false,
-          restitution:0,
-          friction:1,
-          density:1.2
-      }
-      this.body = Bodies.ellipse(x,y,width,height,options);
-      this.width = width;
-      this.height = height;
-      World.add(world, this.body);
-    }
-    display(){
-      var pos =this.body.position;
-      ellipseMode(CENTER);
-      fill("black");
-      this.image = loadImage("Pictures/stone.png");
-      image(this.image,300,390,250,600);
-      ellipse(pos.x, pos.y, this.width, this.height);
-    }
-  };
+class stone
+{
+	constructor(x,y,r)
+	{
+		var options={
+			isStatic:false,
+			restitution:0,
+			friction:1,
+			density:1.2
+			}
+		this.x=x;
+		this.y=y;
+		this.r=r
+		this.image=loadImage("images/stone.png");
+		this.body=Bodies.circle(this.x, this.y, this.r/2, options)
+		World.add(world, this.body);
+
+	}
+	display()
+	{
+			var stonepos=this.body.position;		
+			push()
+			translate(stonepos.x, stonepos.y);
+			// rectMode(CENTER)
+			// rotate(this.body.angle)
+			fill(255,0,255)
+			imageMode(CENTER);
+			ellipseMode(RADIUS)
+			image(this.image, 0,0,this.r*2, this.r*2)
+			pop()
+			
+	}
+
+}
